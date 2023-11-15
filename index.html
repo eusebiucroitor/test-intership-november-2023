@@ -18,8 +18,37 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <h1>Your Application</h1>
+        
     </header>
-    <!-- Your other content goes here -->
+    <main>
+        <form class="search-form" id="dictionaryForm" onsubmit="searchDictionary(event)">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="search" maxlength="100" pattern="[A-Za-z]+" required>
+            <button type="button" onclick="searchDictionary() "  onsubmit=searchDictionary(event)>Search</button>
+        </form>
+        <div id="result-container"></div>
+
+
+        <h2>Search History</h2>
+        <table id="search-history-table">
+            <thead>
+                <tr>
+                    <th>Word</th>
+                    <th>Datetime</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="search-history-body">
+                <!-- Search history rows will be added dynamically here -->
+            </tbody>
+        </table>
+    </main>
+    <footer class="app-footer">
+        <p class="footer-text-left">Created by: Croitor Eusebiu</p>
+        <p class="footer-text-right">Internship 2023</p>
+    </footer>
+    
+
+    <script src="app.js"></script>
 </body>
 </html>
