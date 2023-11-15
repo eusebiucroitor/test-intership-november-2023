@@ -48,6 +48,9 @@ function addToSearchHistory(word) {
 function displaySearchHistory() {
     const searchHistoryBody = document.getElementById('search-history-body');
 
+    // Sort the search history alphabetically by word
+    searchHistory.sort((a, b) => a.word.localeCompare(b.word));
+
     // Clear previous search history
     searchHistoryBody.innerHTML = '';
 
@@ -141,6 +144,7 @@ function confirmDeleteEntry() {
 function searchDictionary(event){ 
     const searchInput = document.getElementById('search').value;
     
+    
 
     if (searchInput.trim() !== '') {
         const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(searchInput)}`;
@@ -152,9 +156,12 @@ function searchDictionary(event){
                 saveSearchHistory(searchInput);
                 displaySearchHistory();
                 displayResults(data);
+                
+                
             })
             .catch(error => console.error('Error fetching data:', error));
     }
+    
     event.preventDefault();
 }
 
