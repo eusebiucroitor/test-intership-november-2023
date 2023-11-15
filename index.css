@@ -11,12 +11,47 @@ body {
     color: #ffffff;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
     margin-right: 10px; /* Adjust the margin as needed */
 }
 
-.app-header h1 {
+.main-menu {
+    display: flex;
+}
+
+.main-menu ul {
+    list-style-type: none;
     margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.main-menu li {
+    margin-right: 20px;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/* Styling for the About and Contact pages */
+
+.about-page, .contact-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.about-page {
+    background-color: #f0f0f0; /* Add a light background color */
+}
+
+.contact-page {
+    background-color: #e0e0e0; /* Add a slightly darker background color */
 }
