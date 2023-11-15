@@ -15,7 +15,7 @@ body {
 }
 
 .logo {
-    margin-right: 10px; /* Adjust the margin as needed */
+    margin-left: 10px; /* Adjust the margin as needed */
 }
 
 .main-menu {
@@ -177,4 +177,37 @@ button:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#search-history-table {
+    margin-top: 20px; /* Adjust the top margin as needed */
+    text-align: center;
+    align-items: center;
+}
+
+
+
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+    margin: 0;
+}
+
+main {
+    flex: 1; /* Allow the main content to grow and take up remaining space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#search-history-table {
+    margin-top: 20px; /* Adjust the top margin as needed */
+    text-align: center;
+}
+
+.app-footer {
+    margin-top: auto; /* Push the footer to the bottom of the page */
 }

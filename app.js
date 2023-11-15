@@ -12,63 +12,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// app.js
-function searchDictionary() {
-    const searchInput = document.getElementById('search').value;
-    
 
-    if (searchInput.trim() !== '') {
-        const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(searchInput)}`;
 
-        // Make the API call using fetch
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => displayResults(data))
-            .catch(error => console.error('Error fetching data:', error));
-    }
-}
-
-function displayResults(data) {
-    const resultContainer = document.getElementById('result-container');
-
-    // Clear previous results
-    resultContainer.innerHTML = '';
-
-    if (Array.isArray(data) && data.length > 0) {
-        // Display the results
-        const definition = data[0]?.meanings[0]?.definitions[0]?.definition;
-
-        const resultElement = document.createElement('div');
-        resultElement.innerHTML = `<p><strong>Definition:</strong> ${definition}</p>`;
-        resultContainer.appendChild(resultElement);
-    } else {
-        resultContainer.innerHTML = '<p>No results found.</p>';
-    }
-}
 
 /////////////////////////
 let searchHistory = [];
 
 
-function searchDictionary(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
 
-    const searchInput = document.getElementById('search').value;
-
-    if (searchInput.trim() !== '') {
-        const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(searchInput)}`;
-
-        // Make the API call using fetch
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                displayResults(data);
-                addToSearchHistory(searchInput);
-                displaySearchHistory();
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }
-}
 
 
 function displayResults(data) {
@@ -184,3 +135,58 @@ function confirmDeleteEntry() {
     }
 }
 
+//////
+
+
+function searchDictionary(event){ 
+    const searchInput = document.getElementById('search').value;
+    
+
+    if (searchInput.trim() !== '') {
+        const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(searchInput)}`;
+
+        // Make the API call using fetch
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                saveSearchHistory(searchInput);
+                displaySearchHistory();
+                displayResults(data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+    event.preventDefault();
+}
+
+function saveSearchHistory(word) {
+    const datetime = new Date().toLocaleString();
+    searchHistory.push({ word, datetime });
+    
+    // Save the search history locally (e.g., in localStorage)
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+}
+
+function displaySearchHistory() {
+    const searchHistoryBody = document.getElementById('search-history-body');
+
+    // Clear previous search history
+    searchHistoryBody.innerHTML = '';
+
+    // Display the updated search history
+    searchHistory.forEach(entry => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${entry.word}</td>
+            <td>${entry.datetime}</td>
+            <td>
+                <button onclick="viewEntry('${entry.word}')">View</button>
+                <button onclick="deleteEntry('${entry.word}')">Delete</button>
+            </td>
+        `;
+        searchHistoryBody.appendChild(row);
+    });
+}
+
+// Initialize search history from local storage (if available)
+const storedSearchHistory = localStorage.getItem('searchHistory');
+searchHistory = storedSearchHistory ? JSON.parse(storedSearchHistory) : [];
