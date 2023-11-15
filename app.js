@@ -148,3 +148,39 @@ function closeModal() {
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
 }
+
+/*logic for deleted button */
+function deleteEntry(word) {
+    const entry = searchHistory.find(entry => entry.word === word);
+
+    if (entry) {
+        const confirmationModal = document.getElementById('confirmationModal');
+        const confirmationText = document.getElementById('confirmationText');
+
+        confirmationText.textContent = `Are you sure you want to delete the session for the word "${word}"?`;
+
+        confirmationModal.style.display = 'block';
+        
+        // Store the current entry in a variable for use in confirmDeleteEntry
+        currentEntryToDelete = entry;
+    }
+}
+
+function closeConfirmationModal() {
+    const confirmationModal = document.getElementById('confirmationModal');
+    confirmationModal.style.display = 'none';
+}
+
+function confirmDeleteEntry() {
+    if (currentEntryToDelete) {
+        // Remove the entry from search history
+        searchHistory = searchHistory.filter(e => e.word !== currentEntryToDelete.word);
+
+        // Update the displayed search history
+        displaySearchHistory();
+
+        // Close the confirmation modal
+        closeConfirmationModal();
+    }
+}
+
