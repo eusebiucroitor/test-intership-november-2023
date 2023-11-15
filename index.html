@@ -21,10 +21,10 @@
         
     </header>
     <main>
-        <form class="search-form" id="dictionaryForm" onsubmit="searchDictionary(event)">
+        <form class="search-form" id="dictionaryForm" onsubmit=searchDictionary(event)>
             <label for="search">Search:</label>
             <input type="text" id="search" name="search" maxlength="100" pattern="[A-Za-z]+" required>
-            <button type="button" onclick="searchDictionary() "  onsubmit=searchDictionary(event)>Search</button>
+            <button type="button" onclick=searchDictionary()   >Search</button>
         </form>
         <div id="result-container"></div>
 
@@ -43,6 +43,13 @@
             </tbody>
         </table>
     </main>
+    <div id="modal" class="modal">
+        <div class="modal-content" id="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-result"></div>
+        </div>
+    </div>
+
     <footer class="app-footer">
         <p class="footer-text-left">Created by: Croitor Eusebiu</p>
         <p class="footer-text-right">Internship 2023</p>

@@ -130,3 +130,21 @@ function deleteEntry(word) {
     // Update the displayed search history
     displaySearchHistory();
 }
+
+/*modal logic*/
+function viewEntry(word) {
+    const entry = searchHistory.find(entry => entry.word === word);
+
+    if (entry) {
+        const modalResult = document.getElementById('modal-result');
+        modalResult.innerHTML = `<p><strong>Word:</strong> ${entry.word}</p><p><strong>Datetime:</strong> ${entry.datetime}</p>`;
+
+        const modal = document.getElementById('modal');
+        modal.style.display = 'block';
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
+}
