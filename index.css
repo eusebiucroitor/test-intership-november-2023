@@ -1,0 +1,22 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.app-header {
+    height: 100px;
+    background-color: #347ab4;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.app-header h1 {
+    margin: 0;
+}
